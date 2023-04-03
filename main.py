@@ -75,5 +75,8 @@ class Ball():
         self.vy = initial_vy
 
 
-g = World()    
-
+if __name__ == "__main__":
+    try:
+        g = World()    
+    except KeyboardInterrupt:
+        print("KB interrupt detected")

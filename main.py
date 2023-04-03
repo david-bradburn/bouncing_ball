@@ -8,10 +8,10 @@ import time
 
 class World():
     def __init__(self) -> None:
-        self.Height = 20 ## Might want to generate custom world rather than a rectangle
-        self.Width  = 30
+        self.Height = 4 ## Might want to generate custom world rather than a rectangle
+        self.Width  = 100
 
-        self.ball = Ball(2, 3)
+        self.ball = Ball(2, 1)
 
         self.main()
 
@@ -40,20 +40,27 @@ class World():
         LINE_UP = '\033[1A'
         LINE_CLEAR = '\x1b[2K'
 
-        for i in range(self.Height + 1):
+        for i in range(self.Height + 2):
             print(LINE_UP, end=LINE_CLEAR)
 
     def display(self):#|-+
-        display_str = ""
+
+        end_cap = "+"
+        for i in range(self.Width):
+            end_cap += "-" 
+        end_cap += "+"
+
+        display_str = end_cap
         for y_coord in range(self.Height):
-            str_temp = ""
+            str_temp = "|"
             for x_coord in range(self.Width):
                 if x_coord == self.ball.x and y_coord == self.ball.y:
                     str_temp += "X"
                 else:
                     str_temp += " "
-
+            str_temp += "|"
             display_str = str_temp + "\n" + display_str
+        display_str = end_cap + "\n" + display_str
 
             # print()
         self.screen_clear()
